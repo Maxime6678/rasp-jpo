@@ -15,7 +15,9 @@
 void init(BrickManager* brickManager){
 	Brick* brique;
 	brique = (Brick*) malloc (NBR_BRIQUE * sizeof(Brick));
-	brique[0] = createBrick(WIDTH/2, HEIGHT/2, BRICK_WIDTH, BRICK_HEIGHT);
+	brique[0] = createBrick(WIDTH/2-BRICK_WIDTH, HEIGHT/2, BRICK_WIDTH, BRICK_HEIGHT);
+	brique[1] = createBrick(WIDTH/2, HEIGHT/2, BRICK_WIDTH, BRICK_HEIGHT);
+	brique[2] = createBrick(WIDTH/2+BRICK_WIDTH, HEIGHT/2, BRICK_WIDTH, BRICK_HEIGHT);
 	brickManager->brique = brique;
 	Ball* ball = initBall(WIDTH/2, 1);
 	brickManager->ball = ball;
