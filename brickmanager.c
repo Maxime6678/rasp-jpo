@@ -40,6 +40,8 @@ void tick(BrickManager* brickManager){
 		vecN[1] = vecD[1] - 2 * dProduct * normalVec[1];
 		ball->vecd = vecN;
 		move(ball);
+	}else if(isBorder(ball, 0, 0, WIDTH, HEIGHT)){
+		
 	}else{
 		move(ball);
 	}

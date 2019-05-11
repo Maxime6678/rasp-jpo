@@ -13,6 +13,14 @@ Ball* initBall(int x, int y){
 	return b;
 }
 
+int isBorder(Ball* ball, int mx, int my, int max, int may){
+	if(ball->coords[0] >= (mx+1) && ball->coords[0] <= (max-1)
+			&& ball->coords[1] >= (my+1) && ball->coords[0] <= (may-1)){
+				return 0;
+			}
+		return 1;
+}
+
 void move(Ball* ball){
 	ball->coords[0] += ball->vecd[0];
 	ball->coords[1] += ball->vecd[1];
