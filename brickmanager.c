@@ -36,12 +36,29 @@ void tick(BrickManager* brickManager){
 		int* vecD = ball->vecd;
 		int* vecN = calloc(2, sizeof(int));
 		double dProduct = dot(vecD, vecN);
+		// Reflection (utilisé dans les calculs de lumières)
 		vecN[0] = vecD[0] - 2 * dProduct * normalVec[0];
 		vecN[1] = vecD[1] - 2 * dProduct * normalVec[1];
 		ball->vecd = vecN;
 		move(ball);
 	}else if(isBorder(ball, 0, 0, WIDTH, HEIGHT)){
-		
+		int* vec = (int*) calloc(2, sizeof(int));
+		if(ball->coords[0] <= 1){
+			vec[0] = 1;vec[1] = 0;
+		}else if(ball->coords[0] >= (WIDTH-1)){
+			vec[0] = -1;vec[1] = 0;
+		}else if(ball->coords[1] >= (HEIGHT-1)){
+			vec[0] = 0;vec[1] = 1;
+		}else{
+			vec[0] = 0;vec[1] = -1;
+		}
+		int* vecD = ball->vecd;
+		int* vecN = calloc(2, sizeof(int));
+		double dProduct = dot(vecD, vecN);
+		vecN[0] = vecD[0] - 2 * dProduct * normalVec[0];
+		vecN[1] = vecD[1] - 2 * dProduct * normalVec[1];
+		ball->vecd = vecN;
+		move(ball);
 	}else{
 		move(ball);
 	}
