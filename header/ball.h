@@ -8,6 +8,6 @@ typedef struct Ball
 #endif
 Ball* initBall(int x, int y);
 
-int isBorder(int mx, int my, int max, int may);
+int isBorder(Ball* ball, int mx, int my, int max, int may);
 
 void move(Ball* ball);

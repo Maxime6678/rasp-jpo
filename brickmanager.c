@@ -42,15 +42,15 @@ void tick(BrickManager* brickManager){
 		ball->vecd = vecN;
 		move(ball);
 	}else if(isBorder(ball, 0, 0, WIDTH, HEIGHT)){
-		int* vec = (int*) calloc(2, sizeof(int));
+		int* normalVec = (int*) calloc(2, sizeof(int));
 		if(ball->coords[0] <= 1){
-			vec[0] = 1;vec[1] = 0;
+			normalVec[0] = 1;normalVec[1] = 0;
 		}else if(ball->coords[0] >= (WIDTH-1)){
-			vec[0] = -1;vec[1] = 0;
+			normalVec[0] = -1;normalVec[1] = 0;
 		}else if(ball->coords[1] >= (HEIGHT-1)){
-			vec[0] = 0;vec[1] = 1;
+			normalVec[0] = 0;normalVec[1] = 1;
 		}else{
-			vec[0] = 0;vec[1] = -1;
+			normalVec[0] = 0;normalVec[1] = -1;
 		}
 		int* vecD = ball->vecd;
 		int* vecN = calloc(2, sizeof(int));
