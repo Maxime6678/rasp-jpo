@@ -126,8 +126,6 @@ void display(BrickManager* brickManager){
 	// =================================================================== Affichage de la balle
 	Ball* ball = brickManager->ball;
 	affichage[ball->coords[0]][ball->coords[1]] = BALL_CHAR;
-
-	printf(ANSI_COLOR_YELLOW);
 	for (int i = HEIGHT-1; i >= 0; --i){
 		printf("|");
 		for (int j = 0; j < WIDTH; ++j){
