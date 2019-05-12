@@ -5,6 +5,13 @@
 #include <stdlib.h>
 #include <malloc.h>
 
+// COULEUR
+#define ANSI_COLOR_RED     "\x1b[31m"
+#define ANSI_COLOR_YELLOW  "\x1b[33m"
+#define ANSI_COLOR_GREEN   "\x1b[40m"
+#define ANSI_COLOR_RESET   "\x1b[0m"
+
+// CONST
 #define NBR_BRIQUE 3
 #define WIDTH 80
 #define HEIGHT 30
