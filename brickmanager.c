@@ -30,15 +30,14 @@ Brick* getBriqueArray(BrickManager* brickManager){
 void tick(BrickManager* brickManager){
 	Ball* ball = brickManager->ball;
 	Brick* brick = getTouchingBrick(ball->coords[0], ball->coords[1], brickManager);
-	printf("%p", brick);
 	if(brick != NULL){
 		printf("Touching brick\n");
 		int* normalVec = normal(brick, ball->coords[0], ball->coords[1]);
 		int* vecD = ball->vecd;
 		int* vecN = calloc(2, sizeof(int));
-		double dProduct = dot(vecD, vecN);
+		double dProduct = dot(vecD, normalVec);
 		// Reflection (utilisé dans les calculs de lumières)
-		printf("%d\n", dProduct);
+		printf("%L\n", dProduct);
 		vecN[0] = vecD[0] - 2 * dProduct * normalVec[0];
 		vecN[1] = vecD[1] - 2 * dProduct * normalVec[1];
 		printf("VECX(x:%i,y:%i), VECX2(x:%i,y:%i)\n",vecD[0], vecD[1], vecN[0], vecN[1]);
@@ -58,7 +57,7 @@ void tick(BrickManager* brickManager){
 		}
 		int* vecD = ball->vecd;
 		int* vecN = calloc(2, sizeof(int));
-		double dProduct = dot(vecD, vecN);
+		double dProduct = dot(vecD, normalVec);
 		vecN[0] = vecD[0] - 2 * dProduct * normalVec[0];
 		vecN[1] = vecD[1] - 2 * dProduct * normalVec[1];
 		ball->vecd = vecN;
@@ -69,12 +68,13 @@ void tick(BrickManager* brickManager){
 }
 
 Brick* getTouchingBrick(int x, int y, BrickManager* brickManager){
+	printf("x:%i y:%i\n",x,y);
 	for (int i = 0; i < NBR_BRIQUE; ++i)
 	{
 		Brick* brick = malloc(sizeof(Brick));
 		brick = &(brickManager->brique[i]);
 		if(isTouching(brick, x, y)){
-			printf("TOUCHING at x:%i, y:%i", x, y);
+			printf("TOUCHING at x: %i, y: %i\n", x, y);
 			return brick;
 		}
 	}

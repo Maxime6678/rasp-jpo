@@ -19,10 +19,10 @@ Brick createBrick(int x, int y, int width, int height){
 }
 
 int* normal(Brick* brick, int x, int y){
-	int dm_x = x-(brick->width/2);
-	int dma_x = x+(brick->width/2);
-	int dm_y = y-(brick->height/2);
-	int dma_y = y+(brick->height/2);
+	int dm_x = x-(brick->width/2)-1;
+	int dma_x = x+(brick->width/2)+1;
+	int dm_y = y-(brick->height/2)-1;
+	int dma_y = y+(brick->height/2)+1;
 	int* vec = (int*) calloc(2, sizeof(int));
 
 	if(dma_y < brick->y){
@@ -50,15 +50,15 @@ int* normal(Brick* brick, int x, int y){
 }
 
 int isTouching(Brick* brick, int x, int y){
-	int dm_x = brick->x-(brick->width/2);
-	int dma_x = brick->x+(brick->width/2);
-	int dm_y = brick->y-(brick->height/2);
-	int dma_y = brick->y+(brick->height/2);
+	int dm_x = brick->x-(brick->width/2)-1;
+	int dma_x = brick->x+(brick->width/2)+1;
+	int dm_y = brick->y-(brick->height/2)-1;
+	int dma_y = brick->y+(brick->height/2)+1;
 	if((x > dm_x-1
 		&& x < dma_x+1
 		&& y > dm_y-1
 		&& y < dma_y-1)){
-			printf("x:%i y:%i dx:%i dmx:%i dy:%i dmy:%i\n", brick->x, brick->y, dm_x, dma_x, dm_y, dma_y);
+			printf("x:%i y:%i dx:%i dmx:%i dy:%i dmy:%i\n", x, y, dm_x, dma_x, dm_y, dma_y);
 			return 1;
 	}else{
 			return 0;
