@@ -15,11 +15,11 @@ Ball* initBall(int x, int y){
 }
 
 int isBorder(Ball* ball, int mx, int my, int max, int may){
-	if(ball->coords[0] >= (mx+1) && ball->coords[0] <= (max-1)
-			&& ball->coords[1] >= (my+1) && ball->coords[0] <= (may-1)){
+	if(ball->coords[0] >= (mx+2) && ball->coords[0] <= (max-2)
+			&& ball->coords[1] >= (my+2) && ball->coords[1] <= (may-3)){
 				return 0;
-			}
-		return 1;
+	}
+	return 1;
 }
 
 void move(Ball* ball){

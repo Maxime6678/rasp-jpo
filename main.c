@@ -20,10 +20,17 @@ int run = 1;
 BrickManager brickManager;
 void setup(){
 	init(&brickManager);
+	// TODO Thread affichage et main thread la ou on recupère les entrées
 	while(run){
 		tick(&brickManager);
+		usleep()
+	}
+}
+
+void* displayThread(){
+	while(run){
 		display(&brickManager);
-		usleep(850 * 1000);
+		usleep(150 * 1000);
 	}
 }
 

@@ -6,8 +6,8 @@
 #include <malloc.h>
 
 #define NBR_BRIQUE 3
-#define WIDTH 40
-#define HEIGHT 40
+#define WIDTH 80
+#define HEIGHT 30
 #define BRICK_WIDTH 10
 #define BRICK_HEIGHT 4
 #define BALL_CHAR 'o'
@@ -19,7 +19,7 @@ void init(BrickManager* brickManager){
 	brique[1] = createBrick(WIDTH/2, HEIGHT/2, BRICK_WIDTH, BRICK_HEIGHT);
 	brique[2] = createBrick(WIDTH/2+BRICK_WIDTH, HEIGHT/2, BRICK_WIDTH, BRICK_HEIGHT);
 	brickManager->brique = brique;
-	Ball* ball = initBall(WIDTH/2, 1);
+	Ball* ball = initBall(WIDTH/2, 2);
 	brickManager->ball = ball;
 }
 
@@ -42,6 +42,7 @@ void tick(BrickManager* brickManager){
 		vecN[1] = vecD[1] - 2 * dProduct * normalVec[1];
 		printf("VECX(x:%i,y:%i), VECX2(x:%i,y:%i)\n",vecD[0], vecD[1], vecN[0], vecN[1]);
 		ball->vecd = vecN;
+		brick->hp = brick->hp - 1;
 		move(ball);
 	}else if(isBorder(ball, 0, 0, WIDTH, HEIGHT)){
 		printf("Touching borders\n");
@@ -73,7 +74,7 @@ Brick* getTouchingBrick(int x, int y, BrickManager* brickManager){
 	{
 		Brick* brick = malloc(sizeof(Brick));
 		brick = &(brickManager->brique[i]);
-		if(isTouching(brick, x, y)){
+		if(isTouching(brick, x, y) && brick->hp != 0){
 			printf("TOUCHING at x: %i, y: %i\n", x, y);
 			return brick;
 		}
@@ -86,19 +87,34 @@ void display(BrickManager* brickManager){
 	char affichage[WIDTH][HEIGHT];
 	for (int i = 0; i < WIDTH; ++i){
 		for (int j = 0; j < HEIGHT; ++j){
-			affichage[i][j] = ' ';
+			if(j == 0 || j == (HEIGHT-1)){
+				affichage[i][j] = '=';
+			}else{
+				affichage[i][j] = ' ';
+			}
 		}
 	}
 	// =================================================================== Affichage des briques
 	for (int ii = 0; ii < NBR_BRIQUE; ++ii){
 		Brick brick = brickManager->brique[ii];
-		for (int i = -(brick.width/2); i < (brick.width/2); ++i){
-			for (int j = -(brick.height/2); j < (brick.height/2); ++j){
-				if(brick.setup == 1){
-					affichage[brick.x+i][brick.y+j] = '=';
+		if(brick.hp == 0)continue;
+		int w = brick.width/2;
+		int h = brick.height/2;
+		for (int i = -w; i < w; ++i){
+			for (int j = -h; j < h; ++j){
+				if(brick.setup != 1)return;
+				if(i == 0 && j == 0){
+					affichage[brick.x+i][brick.y+j] = brick.hp+'0';
+				}else if(i == -w || i == w-1){
+					affichage[brick.x+i][brick.y+j]='|';
+				}else if(j == -h || j == h-1){
+					affichage[brick.x+i][brick.y+j]='=';
 				}else{
-					break;
+					affichage[brick.x+i][brick.y+j]=' ';
 				}
+
+				//affichage[brick.x+i][brick.y+j] = '=';
+
 			}
 		}
 	}
