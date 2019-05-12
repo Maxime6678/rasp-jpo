@@ -1,6 +1,6 @@
 #include "header/util.h"
 
-double dot(int vec1[], int vec2[]){
+double dot(int* vec1, int* vec2){
   // On assume que taille de vec1 est égale a vec2
   double r = 0.0;
   int i;

@@ -10,6 +10,7 @@ Ball* initBall(int x, int y){
 	b->vecd = (int*) calloc(2, sizeof(int));
 	b->vecd[0] = 0;
 	b->vecd[1] = 1;
+	printf("Init ball with: x:%i, y:%i / vecx:%i, vecy:%i\n", b->coords[0], b->coords[1], b->vecd[0], b->vecd[1]);
 	return b;
 }
 

@@ -5,7 +5,7 @@
 #include <stdlib.h>
 #include <malloc.h>
 
-#define NBR_BRIQUE 1
+#define NBR_BRIQUE 3
 #define WIDTH 40
 #define HEIGHT 40
 #define BRICK_WIDTH 10
@@ -32,16 +32,20 @@ void tick(BrickManager* brickManager){
 	Brick* brick = getTouchingBrick(ball->coords[0], ball->coords[1], brickManager);
 	printf("%p", brick);
 	if(brick != NULL){
+		printf("Touching brick\n");
 		int* normalVec = normal(brick, ball->coords[0], ball->coords[1]);
 		int* vecD = ball->vecd;
 		int* vecN = calloc(2, sizeof(int));
 		double dProduct = dot(vecD, vecN);
 		// Reflection (utilisé dans les calculs de lumières)
+		printf("%d\n", dProduct);
 		vecN[0] = vecD[0] - 2 * dProduct * normalVec[0];
 		vecN[1] = vecD[1] - 2 * dProduct * normalVec[1];
+		printf("VECX(x:%i,y:%i), VECX2(x:%i,y:%i)\n",vecD[0], vecD[1], vecN[0], vecN[1]);
 		ball->vecd = vecN;
 		move(ball);
 	}else if(isBorder(ball, 0, 0, WIDTH, HEIGHT)){
+		printf("Touching borders\n");
 		int* normalVec = (int*) calloc(2, sizeof(int));
 		if(ball->coords[0] <= 1){
 			normalVec[0] = 1;normalVec[1] = 0;
@@ -70,7 +74,7 @@ Brick* getTouchingBrick(int x, int y, BrickManager* brickManager){
 		Brick* brick = malloc(sizeof(Brick));
 		brick = &(brickManager->brique[i]);
 		if(isTouching(brick, x, y)){
-			printf("TOUCHING at x:%i, :%i", x, y);
+			printf("TOUCHING at x:%i, y:%i", x, y);
 			return brick;
 		}
 	}

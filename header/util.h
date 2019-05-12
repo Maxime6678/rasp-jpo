@@ -1,1 +1,1 @@
-double dot(int vec1[], int vec2[]);
+double dot(int* vec1, int* vec2);
