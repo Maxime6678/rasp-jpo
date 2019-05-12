@@ -23,7 +23,7 @@ void setup(){
 	while(run){
 		tick(&brickManager);
 		display(&brickManager);
-		sleep(1);
+		usleep(850 * 1000);
 	}
 }
 

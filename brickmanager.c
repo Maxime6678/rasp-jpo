@@ -107,9 +107,11 @@ void display(BrickManager* brickManager){
 	affichage[ball->coords[0]][ball->coords[1]] = BALL_CHAR;
 
 	for (int i = HEIGHT-1; i >= 0; --i){
+		printf("|");
 		for (int j = 0; j < WIDTH; ++j){
 			printf("%c", affichage[j][i]);
 		}
+		printf("|");
 		printf("\n");
 	}
 }
