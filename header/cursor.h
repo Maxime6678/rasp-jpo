@@ -1,4 +1,3 @@
-
 #ifndef CURSOR_H_
 #define CURSOR_H_
 typedef struct Cursor
@@ -10,3 +9,5 @@ typedef struct Cursor
 
 } Cursor;
 #endif
+
+void initCursor(Cursor* cursor, int MAXWIDTH);

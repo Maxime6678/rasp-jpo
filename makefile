@@ -4,7 +4,7 @@ SOURCES = $(wildcard *.c)
 BINAIRES = $(patsubst %.c,%.o,${SOURCES})
 
 main : ${BINAIRES}
-	${CC} ${CFLAGS} -o $@ $^
+	${CC} ${CFLAGS} -o $@ $^ -lwiringPi -lm -lpthread
 
 clean :
 	rm -f main

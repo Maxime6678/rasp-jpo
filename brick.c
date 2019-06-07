@@ -12,7 +12,7 @@ Brick createBrick(int x, int y, int width, int height){
 	b.y = y;
 	b.width = width;
 	b.height = height;
-	b.maxHP = 3;
+	b.maxHP = 1;
 	b.hp = b.maxHP;
 	b.setup = 1;
 	return b;
