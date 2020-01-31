@@ -58,7 +58,7 @@ int isTouching(Brick* brick, int x, int y){
 		&& x < dma_x+1
 		&& y > dm_y-1
 		&& y < dma_y-1)){
-			printf("x:%i y:%i dx:%i dmx:%i dy:%i dmy:%i\n", x, y, dm_x, dma_x, dm_y, dma_y);
+			//printf("x:%i y:%i dx:%i dmx:%i dy:%i dmy:%i\n", x, y, dm_x, dma_x, dm_y, dma_y);
 			return 1;
 	}else{
 			return 0;

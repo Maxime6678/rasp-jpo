@@ -88,9 +88,9 @@ void tick(BrickManager* brickManager){
 			for (int b = 0; b < NBR_BRIQUE; ++b){
 				brickManager->brique[b].hp = 0;
 			}
-			printf("%i", *(brickManager->lose));
+			//printf("%i", *(brickManager->lose));
 			*(brickManager->lose) = 1;
-			printf("%i", *(brickManager->lose));
+			//printf("%i", *(brickManager->lose));
 			return;
 		}
 		if(ball->coords[0] <= 1){

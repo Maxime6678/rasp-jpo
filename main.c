@@ -62,13 +62,13 @@ void setup(){
 	printf("%i", lose);
 	if(lose) {
 		system("clear");
-		printf("Mdr t nul L O L\n");
+		printf("Perdu\n");
 		printf("%s",pseudo);
 		char* ligne = NULL;
 		size_t taille = 0;
-		printf("Le contenu du fichier est:\n");
-		getline(&ligne, &taille, HS);
-		printf("%s", ligne);
+		//printf("Le contenu du fichier est:\n");
+		//getline(&ligne, &taille, HS);
+		//printf("%s", ligne);
 	}
 }
 
